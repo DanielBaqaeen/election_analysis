@@ -10,11 +10,15 @@ library(dplyr)
 
 ```{r}
 voter =read.csv("voter-2016.csv")
-voter.updated = select(voter, pid3_2016, PARTY_AGENDAS_rand_2016, pid7_2016, race_2016, educ_2016, faminc_2016, inputstate_2016 ,votemeth16_2016, presvote16post_2016, vote_for_against_2016, accurately_counted_2016, accurately_counted2_2016, wealth_2016, trust_people_2016, imiss_a_2016, imiss_c_2016, imiss_d_2016, imiss_g_2016, imiss_j_2016, imiss_l_2016, imiss_t_2016, imiss_x_2016, imiss_y_2016, abortview3_2016, gaymar_2016, police_threat_2016, envwarm_2016, taxdoug_2016, employ_2016, ideo5_2016, pew_religimp_2016)
+voter.updated = select(voter, pid3_2016, PARTY_AGENDAS_rand_2016, pid7_2016, race_2016, educ_2016, faminc_2016, inputstate_2016 ,votemeth16_2016, presvote16post_2016, vote_for_against_2016, imiss_c_2016, imiss_d_2016, imiss_g_2016, imiss_j_2016, imiss_l_2016, imiss_t_2016, imiss_x_2016, imiss_y_2016, abortview3_2016, gaymar_2016, police_threat_2016, envwarm_2016, taxdoug_2016, employ_2016, ideo5_2016, pew_religimp_2016)
 ```
 
 <!-- Renaming the header -->
 
 ```{r}
-names(voter.updated) <- c("party", "party.agendas", "levels.of.party", "race", "education", "fam.income", "state.of.residence", "vote.method", "president.voted.for", "reason.of.voting", "accurately.counted", "generally.accurately.counted", "wealth.distribution", "trust.in.people", "crime.importance", "immigration.importance", "environment.importance", "gay.rights.importance", "health.care.importance", "climate.change.importance", "abortion.importance", "racial.equality.importance", "gender.equality.importance", "legality.abortion", "gay.marriage", "police.racial.bias", "global.warming", "tax.raise", "employment.status", "political.viewpoint", "religion.importance"  ) 
+names(voter.updated) <- c("party", "party.agendas", "levels.of.party", "race", "education", "fam.income", "state.of.residence", "vote.method", "president.voted.for", "reason.of.voting", "immigration.importance", "environment.importance", "gay.rights.importance", "health.care.importance", "climate.change.importance", "abortion.importance", "racial.equality.importance", "gender.equality.importance", "legality.abortion", "gay.marriage", "police.racial.bias", "global.warming", "tax.raise", "employment.status", "political.viewpoint", "religion.importance"  ) 
+```
+
+```{r}
+write.csv(voter.updated, "voter.updated.csv", row.names = FALSE)
 ```
