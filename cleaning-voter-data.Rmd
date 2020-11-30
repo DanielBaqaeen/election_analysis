@@ -4,9 +4,17 @@ Author: Daniel Baqaeen
 ---
 
 library(dplyr)
+
+<!-- Choosing the needed columns  -->
+
+
 ```{r}
 voter =read.csv("voter-2016.csv")
-# voter = voter[,c(4,5)]
-voter.updated = select(voter, PARTY_AGENDAS_rand_2016 ,inputstate_2016 ,votemeth16_2016, presvote16post_2016, vote_for_against_2016, accurately_counted_2016, accurately_counted2_2016, obamaapp_2016, fav_trump_2016, PARTY_AGENDAS_D2_2016, PARTY_AGENDAS_D4_2016, PARTY_AGENDAS_D5_2016, PARTY_AGENDAS_D6_2016, PARTY_AGENDAS_D7_2016, PARTY_AGENDAS_D8_2016, PARTY_AGENDAS_D10_2016, PARTY_AGENDAS_R2_2016, PARTY_AGENDAS_R2_2016, PARTY_AGENDAS_R5_2016, PARTY_AGENDAS_R6_2016, PARTY_AGENDAS_R7_2016, PARTY_AGENDAS_R8_2016, PARTY_AGENDAS_R10_2016, RIGGED_SYSTEM_1_2016, RIGGED_SYSTEM_2_2016, RIGGED_SYSTEM_3_2016, RIGGED_SYSTEM_4_2016, track_2016, econtrend_2016, wealth_2016, trust_people_2016, imiss_a_2016, imiss_c_2016, imiss_d_2016, imiss_e_2016, imiss_g_2016, imiss_h_2016, imiss_j_2016, imiss_l_2016, imiss_q_2016, imiss_r_2016, imiss_t_2016, imiss_x_2016, imiss_y_2016, immi_contribution_2016, abortview3_2016, gaymar_2016, police_threat_2016, envwarm_2016, taxdoug_2016, amdiverse_2016, race_2016, gunown_2016, educ_2016, employ_2016, faminc_2016, pid3_2016, pid7_2016, ideo5_2016, pew_religimp_2016 )
+voter.updated = select(voter, pid3_2016, PARTY_AGENDAS_rand_2016, pid7_2016, race_2016, educ_2016, faminc_2016, inputstate_2016 ,votemeth16_2016, presvote16post_2016, vote_for_against_2016, accurately_counted_2016, accurately_counted2_2016, wealth_2016, trust_people_2016, imiss_a_2016, imiss_c_2016, imiss_d_2016, imiss_g_2016, imiss_j_2016, imiss_l_2016, imiss_t_2016, imiss_x_2016, imiss_y_2016, abortview3_2016, gaymar_2016, police_threat_2016, envwarm_2016, taxdoug_2016, employ_2016, ideo5_2016, pew_religimp_2016)
 ```
 
+<!-- Renaming the header -->
+
+```{r}
+names(voter.updated) <- c("party", "party.agendas", "levels.of.party", "race", "education", "fam.income", "state.of.residence", "vote.method", "president.voted.for", "reason.of.voting", "accurately.counted", "generally.accurately.counted", "wealth.distribution", "trust.in.people", "crime.importance", "immigration.importance", "environment.importance", "gay.rights.importance", "health.care.importance", "climate.change.importance", "abortion.importance", "racial.equality.importance", "gender.equality.importance", "legality.abortion", "gay.marriage", "police.racial.bias", "global.warming", "tax.raise", "employment.status", "political.viewpoint", "religion.importance"  ) 
+```
