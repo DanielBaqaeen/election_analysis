@@ -10,15 +10,28 @@ library(dplyr)
 
 ```{r}
 voter =read.csv("voter-2016.csv")
-voter.updated = select(voter, pid3_2016, PARTY_AGENDAS_rand_2016, pid7_2016, race_2016, educ_2016, faminc_2016, inputstate_2016 ,votemeth16_2016, presvote16post_2016, vote_for_against_2016, imiss_c_2016, imiss_d_2016, imiss_g_2016, imiss_j_2016, imiss_l_2016, imiss_t_2016, imiss_x_2016, imiss_y_2016, abortview3_2016, gaymar_2016, police_threat_2016, envwarm_2016, taxdoug_2016, employ_2016, ideo5_2016, pew_religimp_2016)
+voter.updated = select(voter, pid3_2016, pid7_2016, race_2016, gender_baseline, birthyr_baseline, educ_2016, inputstate_2016, presvote16post_2016, ideo5_2016, imiss_c_2016, imiss_d_2016, imiss_g_2016, imiss_j_2016, imiss_l_2016, imiss_t_2016, imiss_x_2016, imiss_y_2016, abortview3_2016, gaymar_2016, police_threat_2016, envwarm_2016, pew_religimp_2016)
 ```
 
 <!-- Renaming the header -->
 
 ```{r}
-names(voter.updated) <- c("party", "party.agendas", "levels.of.party", "race", "education", "fam.income", "state.of.residence", "vote.method", "president.voted.for", "reason.of.voting", "immigration.importance", "environment.importance", "gay.rights.importance", "health.care.importance", "climate.change.importance", "abortion.importance", "racial.equality.importance", "gender.equality.importance", "legality.abortion", "gay.marriage", "police.racial.bias", "global.warming", "tax.raise", "employment.status", "political.viewpoint", "religion.importance"  ) 
+names(voter.updated) <- c("party", "levels_of_party", "race", "gender", "birth_year", "education", "state_of_residence", "president_voted_for", "idealogy", "immigration_importance", "environment_importance", "gay_rights_importance", "health_care_importance", "climate_change_importance", "abortion_importance", "racial_equality_importance", "gender_equality_importance", "legality_abortion", "gay_marriage", "police_racial_bias", "global_warming", "religion_importance") 
 ```
 
 ```{r}
-write.csv(voter.updated, "voter.updated.csv", row.names = FALSE)
+voter.updated <- mutate(voter.updated,
+       age = 2012 - birth_year)
+
+voter.updated = voter.updated[, -5]
+
+voter.updated <- voter.updated %>% mutate(age_group = case_when(age >= 18  & age <= 29 ~ '1',
+                                                               age >= 30  & age <= 39 ~ '2',
+                                                               age >= 40  & age <= 49 ~ '3',
+                                                               age >= 50  & age <= 64 ~ '4',
+                                                               age >= 65 ~ '5'))
+```
+
+```{r}
+write.csv(voter.updated, "voter_updated.csv", row.names = FALSE)
 ```
