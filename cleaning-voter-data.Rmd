@@ -16,20 +16,34 @@ voter.updated = select(voter, pid3_2016, pid7_2016, race_2016, gender_baseline, 
 <!-- Renaming the header -->
 
 ```{r}
-names(voter.updated) <- c("party", "levels_of_party", "race", "gender", "birth_year", "education", "state_of_residence", "president_voted_for", "idealogy", "immigration_importance", "environment_importance", "gay_rights_importance", "health_care_importance", "climate_change_importance", "abortion_importance", "racial_equality_importance", "gender_equality_importance", "legality_abortion", "gay_marriage", "police_racial_bias", "global_warming", "religion_importance") 
+names(voter.updated) <- c("party", "levels_of_party", "race", "gender", "birth_year", "education", "state_of_residence", "president_voted_for", "ideo", "immigration_importance", "environment_importance", "gay_rights_importance", "health_care_importance", "climate_change_importance", "abortion_importance", "racial_equality_importance", "gender_equality_importance", "legality_abortion", "gay_marriage", "police_racial_bias", "global_warming", "religion_importance") 
 ```
 
 ```{r}
 voter.updated <- mutate(voter.updated,
-       age = 2012 - birth_year)
+       age = 2016 - birth_year)
 
-voter.updated = voter.updated[, -5]
 
 voter.updated <- voter.updated %>% mutate(age_group = case_when(age >= 18  & age <= 29 ~ '1',
                                                                age >= 30  & age <= 39 ~ '2',
                                                                age >= 40  & age <= 49 ~ '3',
                                                                age >= 50  & age <= 64 ~ '4',
                                                                age >= 65 ~ '5'))
+
+
+```
+
+
+```{r}
+voter.updated <- voter.updated %>% mutate(ideology = case_when(ideo >= 1  & ideo <= 2 ~ '1',
+                                                               ideo >= 3  & ideo < 4 ~ '3',
+                                                               ideo >= 4  & ideo <= 5 ~ '2',
+                                                               ideo >= 5 ~ '4'))
+
+```
+
+```{r}
+voter.updated = voter.updated[, -c(5, 9, 23)]
 ```
 
 ```{r}
